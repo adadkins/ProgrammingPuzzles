@@ -1,1 +1,0 @@
-Create a web app that shortens a url. If soneone visits the shortened URL redirect to the original url.
