@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestCeasarCipher(t *testing.T) {
+func TestPhoneWordMatcher(t *testing.T) {
 	t.Run("Test Phone number matches one number", func(t *testing.T) {
 		phoneNumbers := []int{1234567890, 623277537, 4807767870}
 		result := PhoneWordMatcher("apples", phoneNumbers)
