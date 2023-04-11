@@ -1,9 +1,6 @@
 package smallest_divisible
 
-import "fmt"
-
 func SmallestDivisibleNumber(n int) int {
-	// we can probably calculate the return int at the end
 	returnInt := 1
 	allPrimes := map[int]int{}
 
@@ -30,12 +27,6 @@ func SmallestDivisibleNumber(n int) int {
 var storedPrimeMapping = map[int]map[int]int{}
 
 func GetAllPrimes(n int) map[int]int {
-	v, exists := storedPrimeMapping[n]
-	if exists {
-		fmt.Println("This should never have happend. n was already factored:", n)
-		return v
-	}
-
 	primeMapping := map[int]int{}
 
 	for n > 1 {
