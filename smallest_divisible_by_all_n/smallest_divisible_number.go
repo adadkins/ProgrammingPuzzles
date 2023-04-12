@@ -27,31 +27,30 @@ func SmallestDivisibleNumber(n int) int {
 var storedPrimeMapping = map[int]map[int]int{}
 
 func GetAllPrimes(n int) map[int]int {
-	primeMapping := map[int]int{}
-
-	for n > 1 {
-		alreadyFactoredPrimes, exists := storedPrimeMapping[n]
-		if exists {
-			// add the primes remainding to new prime list
-			for k, v := range alreadyFactoredPrimes {
-				primeMapping[k] = primeMapping[k] + v
-			}
-
-			break
-		}
-
-		for i := 2; i <= n; i++ {
-			if n%i == 0 {
-				primeMapping[i] = primeMapping[i] + 1
-
-				//update our numbas, not sure this works
-				n = n / i
-				i = 2
-				break
-			}
-		}
+	// Validate input
+	if n <= 1 {
+		return nil
 	}
 
+	// Check if n has already been factored
+	v, exists := storedPrimeMapping[n]
+	if exists {
+		return v
+	}
+
+	// Factor n
+	primeMapping := make(map[int]int)
+	for i := 2; i*i <= n; i++ {
+		for n%i == 0 {
+			primeMapping[i]++
+			n /= i
+		}
+	}
+	if n > 1 {
+		primeMapping[n]++
+	}
+
+	// Store the prime mapping
 	storedPrimeMapping[n] = primeMapping
 
 	return primeMapping
