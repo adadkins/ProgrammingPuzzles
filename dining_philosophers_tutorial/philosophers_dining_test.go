@@ -36,6 +36,7 @@ func TestDiningPhilosophers(t *testing.T) {
 			// Dine timed out
 			message = "Time out"
 		}
+
 		assert.Equal(t, "Time out", message)
 	})
 }
