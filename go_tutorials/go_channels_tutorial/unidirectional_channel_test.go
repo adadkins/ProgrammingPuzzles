@@ -1,7 +1,7 @@
 package main_test
 
 import (
-	main "programmingpuzzles/go_channels_tutorial"
+	main "programmingpuzzles/go_tutorials/go_channels_tutorial"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
