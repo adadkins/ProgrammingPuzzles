@@ -14,7 +14,7 @@ func SumPrimes(n int) int {
 }
 
 func IsPrime(n int, primes *map[int]bool) bool {
-	for k, _ := range *primes {
+	for k := range *primes {
 		if n%k == 0 {
 			return false
 		}
@@ -24,20 +24,51 @@ func IsPrime(n int, primes *map[int]bool) bool {
 }
 
 // use a seive, should be faster as it scales O(n)
-func SumPrimesSieve(n int) int {
-	values := make([]bool, n+1)
-	sum := 2
+func SumPrimesSieve(n int) []bool {
+	isNotPrime := make([]bool, n+1)
 
-	for i := 3; i <= n; i = i + 2 {
-		if values[i] == true {
+	for i := 2; i <= n; i = i + 1 {
+		if isNotPrime[i] {
 			continue
 		}
-		sum += i
 
-		for ii := i * i; ii <= n; ii = ii + 2*i {
-			values[ii] = true
+		for ii := i + i; ii <= n; ii = ii + i {
+			isNotPrime[ii] = true
 		}
 	}
 
-	return sum
+	return isNotPrime
+}
+
+func SumPrimesArray(input []int) []int {
+	biggestN := 0
+	// given an array of N's, find the biggest N
+	for _, v := range input {
+		if v > biggestN {
+			biggestN = v
+		}
+	}
+
+	// now that we have the biggest N, find the sieve. False == prime number
+	sieve := SumPrimesSieve(int(biggestN))
+
+	sum := 0
+	calculatedSums := make([]int, len(sieve))
+
+	// loop over the sieve and sum up primes. Start at 2 since thats the first prime
+	for i := 2; i < len(sieve); i++ {
+		if !sieve[i] {
+			sum = sum + i
+		}
+		calculatedSums[i] = sum
+	}
+
+	// create an array to store each input N's sum (for hacker rank we would need to print this)
+	returnArray := make([]int, len(input))
+
+	// loop over the N's and add the calculated sum from the array. N is the index in the array. value is the sum for N
+	for k, v := range input {
+		returnArray[k] = calculatedSums[v]
+	}
+	return returnArray
 }

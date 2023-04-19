@@ -80,3 +80,23 @@ func TestSumPrimesSieve(t *testing.T) {
 		assert.Equal(t, 838596693108, result)
 	})
 }
+
+func TestSumPrimesArray(t *testing.T) {
+	t.Run("Find sums of two numbers, one prime one not prime", func(t *testing.T) {
+		result := sum_primes.SumPrimesArray([]int{5, 10})
+		expected := []int{10, 17}
+		assert.Equal(t, expected, result)
+	})
+
+	t.Run("Find sums of 4 numbers", func(t *testing.T) {
+		result := sum_primes.SumPrimesArray([]int{5, 10, 100, 200})
+		expected := []int{10, 17, 1060, 4227}
+		assert.Equal(t, expected, result)
+	})
+
+	t.Run("Find sums of numltiple powers of 10 up to 10,0000", func(t *testing.T) {
+		result := sum_primes.SumPrimesArray([]int{10, 100, 1000, 10000})
+		expected := []int{17, 1060, 76127, 5736396}
+		assert.Equal(t, expected, result)
+	})
+}
