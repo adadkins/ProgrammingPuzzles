@@ -54,11 +54,5 @@ func stack_print(s *string, print string) string {
 }
 func stack_undo(s *string, history *stack.Stack) {
 	history.Pop()
-	top := history.Peek()
-	result, ok := top.(string)
-	if !ok {
-		*s = ""
-		return
-	}
-	*s = result
+	*s = history.Peek().(string)
 }
