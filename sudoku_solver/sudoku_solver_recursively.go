@@ -14,7 +14,7 @@ func Solve(puzzle [][]int) [][]int {
 	// loop over and fill in all the squares that have one possiblity
 	fillInSquaresWithOnePossibleAnswer(&puzzle)
 
-	if isPuzzleFilled(puzzle) {
+	if isPuzzleFilled(&puzzle) {
 		return puzzle
 	}
 
@@ -61,7 +61,7 @@ func Solve(puzzle [][]int) [][]int {
 			if result != nil {
 
 				// if the entire square is filled in, we can return it
-				if isPuzzleFilled(result) {
+				if isPuzzleFilled(&result) {
 					return result
 				}
 			}
@@ -100,10 +100,10 @@ func Solve(puzzle [][]int) [][]int {
 	return nil
 }
 
-func isPuzzleFilled(puzzle [][]int) bool {
+func isPuzzleFilled(puzzle *[][]int) bool {
 	for r := 0; r < 9; r++ { //loopthrouh the rows
 		for c := 0; c < 9; c++ { //loop through the columns
-			if puzzle[r][c] == 0 {
+			if (*puzzle)[r][c] == 0 {
 				return false
 			}
 		}

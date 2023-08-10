@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestMain(t *testing.T) {
-	t.Run("Simple Sudoku that can be solved with no brute forcing", func(t *testing.T) {
+func TestRecursive(t *testing.T) {
+	t.Run("Recursive: Simple Sudoku that can be solved with no brute forcing", func(t *testing.T) {
 		puzzle := [][]int{
 			{0, 0, 0, 2, 6, 0, 7, 0, 1},
 			{6, 8, 0, 0, 7, 0, 0, 9, 0},
@@ -36,7 +36,7 @@ func TestMain(t *testing.T) {
 		assert.Equal(t, expected, result)
 	})
 
-	t.Run("Medium Sudoku", func(t *testing.T) {
+	t.Run("Recursive: Medium Sudoku", func(t *testing.T) {
 		puzzle := [][]int{
 			{0, 2, 6, 0, 3, 0, 0, 0, 8},
 			{9, 0, 0, 6, 0, 0, 1, 0, 0},
@@ -63,7 +63,7 @@ func TestMain(t *testing.T) {
 		}
 		assert.Equal(t, expected, result)
 	})
-	t.Run("Hard Sudoku", func(t *testing.T) {
+	t.Run("Recursive: Hard Sudoku", func(t *testing.T) {
 		puzzle := [][]int{
 			{0, 0, 6, 3, 0, 7, 0, 0, 0},
 			{0, 0, 4, 0, 0, 0, 0, 0, 5},
@@ -92,7 +92,7 @@ func TestMain(t *testing.T) {
 		assert.Equal(t, expected, result)
 	})
 
-	t.Run("Handles an empty Sudoku starting state", func(t *testing.T) {
+	t.Run("Recursive: Handles an empty Sudoku starting state", func(t *testing.T) {
 		puzzle := [][]int{
 			{0, 0, 0, 0, 0, 0, 0, 0, 0},
 			{0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -121,7 +121,7 @@ func TestMain(t *testing.T) {
 		assert.Equal(t, expected, result)
 	})
 
-	t.Run("Handles an impossible sudoku with no solution", func(t *testing.T) {
+	t.Run("Recursive: Handles an impossible sudoku with no solution", func(t *testing.T) {
 		puzzle := [][]int{
 			{1, 0, 0, 0, 0, 0, 0, 0, 2},
 			{0, 1, 0, 0, 0, 0, 0, 2, 0},
