@@ -5,53 +5,6 @@ import (
 )
 
 func GetTrucksForItems(trucks []int, items []int) []int {
-	returnTrucks := []int{}
-	truckWeightMapping := map[int]int{}
-	// create a mapping of trucks to values
-	for k, v := range trucks {
-		// if we have duplicates we dont need the largest index truck
-		if _, ok := truckWeightMapping[v]; ok == false {
-			truckWeightMapping[v] = k
-		}
-	}
-
-	// add -1 for not found
-	truckWeightMapping[-1] = -1
-
-	sort.Slice(trucks, func(i, j int) bool {
-		return trucks[i] > trucks[j]
-	})
-
-	// keep a map so we dont have to continually search for known values
-	itemTruckMapping := map[int]int{}
-
-	// loop over the items and find the smallest truck index
-	for itemIndex, itemWeight := range items {
-		if val, ok := itemTruckMapping[itemWeight]; ok {
-			items[itemIndex] = val
-			break
-		}
-		iterTruckValue := -1
-
-		// loop over the trucks and find the truck with the capacity that is smallest but less than
-		for _, truckCapacity := range trucks {
-			// check if the item can fit in the truck
-			if itemWeight < truckCapacity {
-				iterTruckValue = truckCapacity
-			}
-			if itemWeight >= truckCapacity {
-				break
-			}
-		}
-
-		itemTruckMapping[itemWeight] = truckWeightMapping[iterTruckValue]
-		returnTrucks = append(returnTrucks, truckWeightMapping[iterTruckValue])
-	}
-
-	return returnTrucks
-}
-
-func GetTrucksForItems1(trucks []int, items []int) []int {
 	// map the truck weights to their index. Later we will want to get the index by truck weight
 	truckWeightIndexMapping := map[int]int{}
 	for index, weight := range trucks {
